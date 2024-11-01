@@ -18,5 +18,5 @@
 1. `src`フォルダ内に`env.js`というファイルを追加し、以下のように記載する
 
    ```javascript:src/env.js
-   export const APIKEY = "[APIKEY]";
+   export const APIKEY = "[取得したAPIKEY]";
    ```
