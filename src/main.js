@@ -169,16 +169,11 @@ class MessageManager {
             .querySelector(".message");
         const sendTimeTag = message.querySelector(".message__time");
         const contentTag = message.querySelector(".message__content");
-        const isReadTag = message.querySelector(".message__read");
 
-        if (isReadTag) {
-            isReadTag.classList.add("hidden");
-            isReadTag.classList.remove("hidden");
-        }
         sendTimeTag.textContent = time;
         let contentHTML = content;
         if (!isFromMe) {
-            contentHTML = `<div style="margin:5px 10px;">${marked.parse(
+            contentHTML = `<div style="margin:5px 5px;">${marked.parse(
                 content
             )}</div>`;
         }

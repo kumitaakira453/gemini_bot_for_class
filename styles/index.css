@@ -145,11 +145,11 @@
     font-size: 24px;
 }
 
-.input-area__icon.button_send {
+.input-area__icon#send_btn {
     color: blue;
 }
 
-.input-area__icon.button_send.hidden {
+.input-area__icon#send_btn.hidden {
     display: none;
 }
 
