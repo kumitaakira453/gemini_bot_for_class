@@ -2,7 +2,7 @@
 
 ### 1.Gemini の APIKEY を取得する
 
-1. [Gemini Developer API](https://ai.google.dev/)に開くアクセス
+1. [Gemini Developer API](https://ai.google.dev/)にアクセス
 2. 画面中央にある「Get API key in Google AI Studio」をクリック
 3. 「法的通知」を読んだ上でチェックボックスにチェックを入れて「続行」をクリック
 4. 「API キー」を取得から「API を作成」ボタンをクリック
