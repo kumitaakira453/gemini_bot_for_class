@@ -178,7 +178,7 @@ class MessageManager {
         sendTimeTag.textContent = time;
         let contentHTML = content;
         if (!isFromMe) {
-            contentHTML = `<div class="my-[5px]">${marked.parse(
+            contentHTML = `<div style="margin:5px 10px;">${marked.parse(
                 content
             )}</div>`;
         }
