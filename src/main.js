@@ -86,7 +86,6 @@ class MessageManager {
      */
     toggleInputLeftBtn(isFocused) {
         const notFocusBtns = [this.addBtn, this.cameraBtn, this.imageBtn];
-        const focusBtns = [this.arrowBtn];
         if (isFocused) {
             notFocusBtns.forEach((btn) => {
                 btn.classList.add("hidden");
