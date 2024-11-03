@@ -19,13 +19,13 @@ class MessageManager {
      */
     initializeElements() {
         this.sendBox = document.querySelector("#input");
-        this.micBtn = document.querySelector("#button_mic");
-        this.sendBtn = document.querySelector("#button_send");
         this.messageContainer = document.querySelector("#main_container");
         this.addBtn = document.querySelector("#add_btn");
         this.cameraBtn = document.querySelector("#camera_btn");
         this.imageBtn = document.querySelector("#image_btn");
         this.arrowBtn = document.querySelector("#arrow_btn");
+        this.micBtn = document.querySelector("#mic_btn");
+        this.sendBtn = document.querySelector("#send_btn");
     }
 
     /**
