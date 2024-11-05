@@ -35,7 +35,6 @@ class MessageManager {
         this.sendBox.addEventListener("input", () =>
             this.toggleMicSendButton()
         );
-        this.sendBtn.addEventListener("click", () => this.sendMessage());
         this.sendBox.addEventListener(
             "compositionstart",
             () => (this.isComposing = true)
@@ -51,6 +50,7 @@ class MessageManager {
         this.sendBox.addEventListener("blur", () =>
             this.toggleInputLeftBtn(false)
         );
+        this.sendBtn.addEventListener("click", () => this.sendMessage());
     }
 
     /**
@@ -117,9 +117,7 @@ class MessageManager {
     async sendToGemini(message) {
         const genAI = new GoogleGenerativeAI(APIKEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-        const prompt = message;
-        const result = await model.generateContent(prompt);
+        const result = await model.generateContent(message);
         this.createMessage(
             result.response.text(),
             this.getFormattedTime(),
