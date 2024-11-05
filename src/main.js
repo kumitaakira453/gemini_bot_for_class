@@ -8,7 +8,6 @@ class MessageManager {
     constructor() {
         this.initializeElements();
         this.isComposing = false;
-
         this.initializeEvents();
         document.querySelector(".message__time#now_time").innerHTML =
             this.getFormattedTime();
@@ -60,9 +59,7 @@ class MessageManager {
     scrollToBottom(target) {
         this.messageContainer.scrollTop = this.messageContainer.scrollHeight;
         const targetPosition = target.offsetTop;
-
         const offset = window.innerHeight * 0.3;
-
         this.messageContainer.scrollTop = targetPosition - offset;
     }
 
