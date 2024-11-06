@@ -164,6 +164,7 @@ class MessageManager {
     this.sendBox.addEventListener("keydown", (e) => this.handleEnterKey(e));
     this.sendBox.addEventListener("focus", () => this.toggleInputLeftBtn(true));
     this.sendBox.addEventListener("blur", () => this.toggleInputLeftBtn(false));
+    this.sendBtn.addEventListener("click", () => this.sendMessage());
   }
 
   /**

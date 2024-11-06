@@ -49,7 +49,7 @@ class MessageManager {
         this.sendBox.addEventListener("blur", () =>
             this.toggleInputLeftBtn(false)
         );
-        // this.sendBtn.addEventListener("click", () => this.sendMessage());
+        this.sendBtn.addEventListener("click", () => this.sendMessage());
     }
 
     /**
