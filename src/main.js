@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+// 1.5.1 パッケージの追加
 import { APIKEY } from "./env.js";
 
 /**
@@ -49,7 +49,7 @@ class MessageManager {
         this.sendBox.addEventListener("blur", () =>
             this.toggleInputLeftBtn(false)
         );
-        this.sendBtn.addEventListener("click", () => this.sendMessage());
+        // this.sendBtn.addEventListener("click", () => this.sendMessage());
     }
 
     /**
@@ -111,16 +111,7 @@ class MessageManager {
      * メッセージ内容をGemini AIモデルに送信し、レスポンスメッセージを作成する
      * @param {string} message - 送信するメッセージ内容
      */
-    async sendToGemini(message) {
-        const genAI = new GoogleGenerativeAI(APIKEY);
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-        const result = await model.generateContent(message);
-        this.createMessage(
-            result.response.text(),
-            this.getFormattedTime(),
-            false
-        );
-    }
+    async sendToGemini(message) {}
 
     /**
      * 入力ボックスに入力されたメッセージを送信する
@@ -140,12 +131,7 @@ class MessageManager {
      * 現在の時刻をHH:MM形式で返す
      * @returns {string} フォーマットされた時刻文字列
      */
-    getFormattedTime() {
-        const now = new Date();
-        const hours = now.getHours().toString().padStart(2, "0");
-        const minutes = now.getMinutes().toString().padStart(2, "0");
-        return `${hours}:${minutes}`;
-    }
+    getFormattedTime() {}
 
     /**
      * 新しいメッセージを作成し、メッセージコンテナに追加する
@@ -153,31 +139,13 @@ class MessageManager {
      * @param {string} time - メッセージの送信時刻
      * @param {boolean} [isFromMe=true] - メッセージがユーザーからのものであるかどうか
      */
-    createMessage(content, time, isFromMe = true) {
-        const templateName = isFromMe ? "me" : "friend";
-        const messageTemplate = document.querySelector(
-            `#message_template_from_${templateName}`
-        );
-        const message = messageTemplate.content
-            .cloneNode(true)
-            .querySelector(".message");
-        const sendTimeTag = message.querySelector(".message__time");
-        const contentTag = message.querySelector(".message__content");
-
-        sendTimeTag.textContent = time;
-        let contentHTML = content;
-        if (!isFromMe) {
-            contentHTML = `<div style="margin:5px 5px;">${marked.parse(
-                content
-            )}</div>`;
-        }
-        contentTag.innerHTML = contentHTML;
-        this.messageContainer.appendChild(message);
-        this.scrollToBottom(message);
-    }
+    createMessage(content, time, isFromMe = true) {}
 }
 
 // 初期化
 document.addEventListener("DOMContentLoaded", () => {
-    const messageManager = new MessageManager();
+    // const messageManager = new MessageManager();
+    // 1.5.3 geminiにリクエストを送信する関数を作成する
 });
+
+// 1.5.3 geminiにリクエストを送信する関数を作成する
