@@ -9,7 +9,7 @@
 PJ を作成するフォルダを開いて以下を実行してください。
 
 ```shell
-    $ git clone https://github.com/kumitaakira453/gemini_bot_for_class.git
+  $ git clone https://github.com/kumitaakira453/gemini_bot_for_class.git
 ```
 
 クローンするとフォルダ内に PJ が作成されます。
