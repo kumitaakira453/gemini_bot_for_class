@@ -93,32 +93,32 @@ GeminiAPI には、API を簡単に利用できるようにパッケージが提
 
 1. `index.html`の`<head>`タグ内に以下を追加
 
-```html
-<!-- index.html -->
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    #...
-    <!-- 1.5.1パッケージの導入 -->
-    <script type="importmap">
-      {
-        "imports": {
-          "@google/generative-ai": "https://esm.run/@google/generative-ai"
-        }
-      }
-    </script>
-  </head>
-</html>
-```
+   ```html
+   <!-- index.html -->
+   <!DOCTYPE html>
+   <html lang="ja">
+     <head>
+       #...
+       <!-- 1.5.1パッケージの導入 -->
+       <script type="importmap">
+         {
+           "imports": {
+             "@google/generative-ai": "https://esm.run/@google/generative-ai"
+           }
+         }
+       </script>
+     </head>
+   </html>
+   ```
 
 2. `src/main.js`の一番上に以下を追加する
 
-```javascript
-// 1.5.1 パッケージの追加
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { APIKEY } from "./env.js";
-#...
-```
+   ```javascript
+   // 1.5.1 パッケージの追加
+   import { GoogleGenerativeAI } from "@google/generative-ai";
+   import { APIKEY } from "./env.js";
+   //...
+   ```
 
 3. `src/main.js`に Gemini にリクエストを送信する関数を作成する
    Gemini にリクエストを送信して、gemini からのレスポンスを console に表示する関数を作成しましょう。
@@ -321,11 +321,11 @@ document.addEventListener("DOMContentLoaded", () => {
    1. まず、`DOMContentLoaded`イベントのコールバック関数内の`MessageManager`クラスのインスタンス化の部分を元に戻し、
       逆に先ほど追加した`sendToGemini`の関数の呼び出し部分は不要なのでコメントアウトしておいてください。
 
-   ```javascript
-   const messageManager = new MessageManager();
-   // 1.5.3 geminiにリクエストを送信する関数を作成する
-   // sendToGemini("こんにちは");
-   ```
+      ```javascript
+      const messageManager = new MessageManager();
+      // 1.5.3 geminiにリクエストを送信する関数を作成する
+      // sendToGemini("こんにちは");
+      ```
 
    2. 次に`sendBtn`がクリックされたときに先ほど説明した`sendMessage()`が実行されるように、コードを追加してください。
       既存コードの処理ごとの記述位置や記述方法を参考にしてください。
@@ -476,47 +476,84 @@ document.addEventListener("DOMContentLoaded", () => {
       変換してから HTML 要素に追加するように編集しましょう。
    4. 以下が実装例になります。HTML 要素を追加するので`innerHTML`を使っています。
 
-   ```javascript
-    createMessage(content, time, isFromMe = true) {
-        const templateName = isFromMe ? "me" : "friend";
-        const messageTemplate = document.querySelector(
-            `#message_template_from_${templateName}`
-        );
-        const message = messageTemplate.content
-            .cloneNode(true)
-            .querySelector(".message");
-        const sendTimeTag = message.querySelector(".message__time");
-        const contentTag = message.querySelector(".message__content");
+      ```javascript
+       createMessage(content, time, isFromMe = true) {
+           const templateName = isFromMe ? "me" : "friend";
+           const messageTemplate = document.querySelector(
+               `#message_template_from_${templateName}`
+           );
+           const message = messageTemplate.content
+               .cloneNode(true)
+               .querySelector(".message");
+           const sendTimeTag = message.querySelector(".message__time");
+           const contentTag = message.querySelector(".message__content");
 
-        sendTimeTag.textContent = time;
-        let contentHTML = content;
-        if (!isFromMe) {
-          // HTML要素全体をまとめてる親タグを作成し外余白を与えている。
-            contentHTML = `<div style="margin:5px 5px;">${marked.parse(
-                content
-            )}</div>`;
-        }
-        // innerHTMLを用いる
-        contentTag.innerHTML = contentHTML;
-        this.messageContainer.appendChild(message);
-        this.scrollToBottom(message);
-    }
-   ```
+           sendTimeTag.textContent = time;
+           let contentHTML = content;
+           if (!isFromMe) {
+             // HTML要素全体をまとめてる親タグを作成し外余白を与えている。
+               contentHTML = `<div style="margin:5px 5px;">${marked.parse(
+                   content
+               )}</div>`;
+           }
+           // innerHTMLを用いる
+           contentTag.innerHTML = contentHTML;
+           this.messageContainer.appendChild(message);
+           this.scrollToBottom(message);
+       }
+      ```
 
 ## 3 　追加実装(時間が余ったら)
 
 せっかくなので、そのほかの API も Bot に追加してみましょう。以下に簡単に叩ける 面白そうな API の例を示しておきます。
 使用例はそれぞれのサイトをみると書かれているので、ぜひ自力で実装してみてください。
-| API | 概要 | 用途 | URL |
-|------------------------------|----------------------------------------------|-------------------------------------------|--------------------------------------------|
-| Dog CEO's Dog API | ランダムな犬の画像や犬種ごとの画像を取得 | 犬画像を表示するサイトやアプリ | [https://thedogapi.com](https://thedogapi.com) |
-| The Cat API | ランダムな猫の画像や猫種の情報を提供 | 猫画像を表示するサイトやアプリ | [https://thecatapi.com](https://thecatapi.com) |
-| OpenWeatherMap API | 世界中の天気情報を取得 | 天気予報アプリや気温表示ウィジェット | [https://openweathermap.org/api](https://openweathermap.org/api) |
-| NASA APOD API | NASA が公開する「今日の宇宙写真」を取得 | 宇宙や天文学に関するアプリ | [https://api.nasa.gov](https://api.nasa.gov) |
-| Advice Slip API | ランダムなアドバイスを提供 | おみくじアプリやモチベーションサイト | [https://api.adviceslip.com](https://api.adviceslip.com) |
-| JokeAPI | ジョークやユーモアのあるテキストを提供 | 楽しみや娯楽のアプリ、ランダムジョークボタン | [https://v2.jokeapi.dev](https://v2.jokeapi.dev) |
-| PokéAPI | ポケモンの詳細情報や画像を取得 | ポケモン好き向けのアプリやゲーム | [https://pokeapi.co](https://pokeapi.co) |
-| Number Facts API | 数字に関するランダムな雑学情報を提供 | 数学のクイズや雑学を提供するアプリ | [http://numbersapi.com](http://numbersapi.com) |
+
+- **Dog CEO's Dog API**
+
+  - **概要**: ランダムな犬の画像や犬種ごとの画像を取得
+  - **用途**: 犬画像を表示するサイトやアプリ
+  - **URL**: [https://thedogapi.com](https://thedogapi.com)
+
+- **The Cat API**
+
+  - **概要**: ランダムな猫の画像や猫種の情報を提供
+  - **用途**: 猫画像を表示するサイトやアプリ
+  - **URL**: [https://thecatapi.com](https://thecatapi.com)
+
+- **OpenWeatherMap API**
+
+  - **概要**: 世界中の天気情報を取得
+  - **用途**: 天気予報アプリや気温表示ウィジェット
+  - **URL**: [https://openweathermap.org/api](https://openweathermap.org/api)
+
+- **NASA APOD API**
+
+  - **概要**: NASA が公開する「今日の宇宙写真」を取得
+  - **用途**: 宇宙や天文学に関するアプリ
+  - **URL**: [https://api.nasa.gov](https://api.nasa.gov)
+
+- **Advice Slip API**
+
+  - **概要**: ランダムなアドバイスを提供
+  - **用途**: おみくじアプリやモチベーションサイト
+  - **URL**: [https://api.adviceslip.com](https://api.adviceslip.com)
+
+- **JokeAPI**
+
+  - **概要**: ジョークやユーモアのあるテキストを提供
+  - **用途**: 楽しみや娯楽のアプリ、ランダムジョークボタン
+  - **URL**: [https://v2.jokeapi.dev](https://v2.jokeapi.dev)
+
+- **PokéAPI**
+
+  - **概要**: ポケモンの詳細情報や画像を取得
+  - **用途**: ポケモン好き向けのアプリやゲーム
+  - **URL**: [https://pokeapi.co](https://pokeapi.co)
+
+- **Number Facts API**
+  - **概要**: 数字に関するランダムな雑学情報を提供
+  - **用途**: 数学のクイズや雑学を提供するアプリ
+  - **URL**: [http://numbersapi.com](http://numbersapi.com)
 
 ## 4 JS の基本文法(DOM 操作)
 
