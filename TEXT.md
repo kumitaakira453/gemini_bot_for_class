@@ -670,7 +670,7 @@ parentElement.appendChild(deepCopy); // 複製した要素を追加
 JavaScript は、ウェブ開発における動的な操作やインタラクションを実現するためのプログラミング言語です。以下では
 python と比較しながらその基本的な文法を説明しています。
 
-## 目次
+### 目次
 
 1. JavaScript の変数宣言
 2. データ型
@@ -681,7 +681,7 @@ python と比較しながらその基本的な文法を説明しています。
 
 ---
 
-## 1. JavaScript の変数宣言
+### 5.1 JavaScript の変数宣言
 
 JavaScript では、変数の宣言に `var`、`let`、`const` の 3 種類があります。Python と異なり、変数のスコープや再代入可能性が異なるため、目的に応じて使い分けます。
 
@@ -695,7 +695,7 @@ const y = 20;
 var z = 30;
 ```
 
-## 2. データ型
+### 5.2 データ型
 
 JavaScript と Python はいくつかのデータ型が似ていますが、JavaScript のデータ型は少し異なります。
 
@@ -713,7 +713,7 @@ let score = null;
 let notAssigned;
 ```
 
-## 3. 条件分岐
+### 5.3 条件分岐
 
 JavaScript の条件分岐は、Python と似ていますが、いくつかの違いがあります。
 
@@ -741,7 +741,7 @@ if (score >= 90) {
 }
 ```
 
-## 4. 繰り返し
+### 5.4 繰り返し
 
 JavaScript には、`for`、`while` ループがあります。Python の `for in` に似た `for...of` 構文も存在します。
 
@@ -759,7 +759,7 @@ while (j < 5) {
 }
 ```
 
-## 5. 関数定義
+### 5.5 関数定義
 
 JavaScript では、関数の定義方法が複数ありますが、基本的な構文は次の通りです。
 
@@ -778,7 +778,7 @@ const greet = function (name) {
 const greet = (name) => `こんにちは、${name}さん`;
 ```
 
-## 6. オブジェクトと配列
+### 5.6 オブジェクトと配列
 
 JavaScript のオブジェクトと配列は Python の辞書やリストに似ています。
 
@@ -801,9 +801,3 @@ console.log(person.name);
 // 配列の要素へのアクセス
 console.log(fruits[1]);
 ```
-
----
-
-## まとめ
-
-JavaScript と Python は共通点も多いですが、異なる部分もあります。特に、変数宣言や関数定義の方法が異なるため注意が必要です。JavaScript を使用することで、ウェブページのインタラクティブな操作やデータの処理を効率的に行うことが可能になります。
