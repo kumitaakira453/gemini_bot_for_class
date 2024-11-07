@@ -49,7 +49,6 @@ class MessageManager {
         this.sendBox.addEventListener("blur", () =>
             this.toggleInputLeftBtn(false)
         );
-        this.sendBtn.addEventListener("click", () => this.sendMessage());
     }
 
     /**
@@ -144,7 +143,7 @@ class MessageManager {
 
 // 初期化
 document.addEventListener("DOMContentLoaded", () => {
-    // const messageManager = new MessageManager();
+    const messageManager = new MessageManager();
     // 1.5.3 geminiにリクエストを送信する関数を作成する
 });
 
