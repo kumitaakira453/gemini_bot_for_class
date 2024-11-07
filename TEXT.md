@@ -801,3 +801,9 @@ console.log(person.name);
 // 配列の要素へのアクセス
 console.log(fruits[1]);
 ```
+
+## 6 最後に
+
+お疲れ様でした。いかがだったでしょうか?
+ぜひ下記フォームに感想いただけますと幸いです！
+[AkaDeMiA✖️BeEngineer イベント感想フォーム](https://forms.gle/xtBRGphDz49Hxczj6)
