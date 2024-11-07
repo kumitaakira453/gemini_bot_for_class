@@ -1,5 +1,5 @@
-# GeminiBot を作ろう!
-
+---
+title: "GeminiBotを作ろう"
 ---
 
 ## 0 はじめに
