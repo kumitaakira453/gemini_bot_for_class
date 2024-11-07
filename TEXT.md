@@ -1,5 +1,7 @@
 # GeminiBot を作成しよう
 
+---
+
 ## 0 はじめに
 
 今回の授業ではゼロから PJ を作成する時間がないので、ある程度 PJ が出来上がっているものを
@@ -516,7 +518,7 @@ document.addEventListener("DOMContentLoaded", () => {
 | PokéAPI | ポケモンの詳細情報や画像を取得 | ポケモン好き向けのアプリやゲーム | [https://pokeapi.co](https://pokeapi.co) |
 | Number Facts API | 数字に関するランダムな雑学情報を提供 | 数学のクイズや雑学を提供するアプリ | [http://numbersapi.com](http://numbersapi.com) |
 
-## 4 JS の基本文法(確認用)
+## 4 JS の基本文法(DOM 操作)
 
 JS を用いた基本的な DOM(`Document Object Mode`) 操作についてまとめておきます。適宜確認に使ってください。
 
@@ -625,3 +627,146 @@ const shallowCopy = originalElement.cloneNode(false); // 子要素は複製し�
 const deepCopy = originalElement.cloneNode(true); // 子要素も含めて複製
 parentElement.appendChild(deepCopy); // 複製した要素を追加
 ```
+
+## 5 JS の基本文法(DOM 操作以前の基本的なところ)
+
+JavaScript は、ウェブ開発における動的な操作やインタラクションを実現するためのプログラミング言語です。以下では
+python と比較しながらその基本的な文法を説明しています。
+
+## 目次
+
+1. JavaScript の変数宣言
+2. データ型
+3. 条件分岐
+4. 繰り返し
+5. 関数定義
+6. オブジェクトと配列
+
+---
+
+## 1. JavaScript の変数宣言
+
+JavaScript では、変数の宣言に `var`、`let`、`const` の 3 種類があります。Python と異なり、変数のスコープや再代入可能性が異なるため、目的に応じて使い分けます。
+
+- **`let`**: 再代入可能で、ブロックスコープを持ちます。Python の通常の変数に近い性質です。
+- **`const`**: 再代入不可で、ブロックスコープを持ちます。定数として扱う場合に使用します。
+- **`var`**: 古いキーワードで、関数スコープを持ちます。一般的には `let` や `const` を使用することが推奨されます。
+
+```javascript
+let x = 10;
+const y = 20;
+var z = 30;
+```
+
+## 2. データ型
+
+JavaScript と Python はいくつかのデータ型が似ていますが、JavaScript のデータ型は少し異なります。
+
+- **文字列**: Python の文字列と同様、シングルクォート `' '` またはダブルクォート `" "` で囲みます。
+- **数値**: Python と同じく整数や浮動小数点数が使えます。
+- **真偽値**: Python の `True`、`False` に相当する `true`、`false` を使用します。
+- **null**: 値が存在しないことを示す特殊な値（Python の `None` に相当）。
+- **undefined**: 未定義の値を示す特殊な値。変数が宣言されているが、値が代入されていないときに使用されます。
+
+```javascript
+let name = "JavaScript";
+let age = 30;
+let isStudent = false;
+let score = null;
+let notAssigned;
+```
+
+## 3. 条件分岐
+
+JavaScript の条件分岐は、Python と似ていますが、いくつかの違いがあります。
+
+```javascript
+let age = 20;
+
+if (age >= 18) {
+  console.log("大人です");
+} else {
+  console.log("未成年です");
+}
+```
+
+Python の `elif` に相当するのが `else if` です。
+
+```javascript
+let score = 85;
+
+if (score >= 90) {
+  console.log("優");
+} else if (score >= 70) {
+  console.log("良");
+} else {
+  console.log("可");
+}
+```
+
+## 4. 繰り返し
+
+JavaScript には、`for`、`while` ループがあります。Python の `for in` に似た `for...of` 構文も存在します。
+
+```javascript
+// for ループ
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+
+// while ループ
+let j = 0;
+while (j < 5) {
+  console.log(j);
+  j++;
+}
+```
+
+## 5. 関数定義
+
+JavaScript では、関数の定義方法が複数ありますが、基本的な構文は次の通りです。
+
+```javascript
+// 通常の関数定義
+function greet(name) {
+  return `こんにちは、${name}さん`;
+}
+
+// 関数式（無名関数）
+const greet = function (name) {
+  return `こんにちは、${name}さん`;
+};
+
+// アロー関数
+const greet = (name) => `こんにちは、${name}さん`;
+```
+
+## 6. オブジェクトと配列
+
+JavaScript のオブジェクトと配列は Python の辞書やリストに似ています。
+
+```javascript
+// オブジェクト
+let person = {
+  name: "山田太郎",
+  age: 25,
+  greet() {
+    console.log("こんにちは！");
+  },
+};
+
+// 配列
+let fruits = ["りんご", "バナナ", "みかん"];
+
+// オブジェクトのプロパティへのアクセス
+console.log(person.name);
+
+// 配列の要素へのアクセス
+console.log(fruits[1]);
+```
+
+---
+
+## まとめ
+
+JavaScript と Python は共通点も多いですが、異なる部分もあります。特に、変数宣言や関数定義の方法が異なるため注意が必要です。JavaScript を使用することで、ウェブページのインタラクティブな操作やデータの処理を効率的に行うことが可能になります。
