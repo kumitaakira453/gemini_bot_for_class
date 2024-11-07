@@ -437,7 +437,22 @@ document.addEventListener("DOMContentLoaded", () => {
    }
    ```
 
-6. ここまでかけたら、動くか確認してみましょう。
+6. ここまでかけたら、動くか確認してみましょう。動かす際には`sendMessage`関数でコメントアウトした`sendToGemini`関数を
+   元に戻すことを忘れないようにしてください。
+   ```javascript
+    async sendMessage() {
+        const content = this.sendBox.value.trim();
+        if (content !== "") {
+            // コメントアウトしておく
+            // const time = this.getFormattedTime();
+            this.createMessage(content, '20:22');
+            this.sendBox.value = "";
+            this.toggleMicSendButton();
+            // コメントアウトを外す
+             await this.sendToGemini(content);
+        }
+    }
+   ```
 7. 次に、送信時間(実行時の**現在時刻**)を取得する関数を作成しましょう。JS では`Date`クラスを用いることで
    比較的簡単に時刻情報を取得、作成することができます。以下は現在時刻を取得する例です。
 
@@ -458,50 +473,65 @@ document.addEventListener("DOMContentLoaded", () => {
     }
    ```
 
-8. Gemini からのメッセージをみると、所々おかしな記号が含まれていることが確認できると思います。
+8. ここまでかけたら、先ほどテスト用に編集した`sendMessage`関数を以下のように戻しておいてください。
+
+   ```javascript
+    async sendMessage() {
+        const content = this.sendBox.value.trim();
+        if (content !== "") {
+            const time = this.getFormattedTime();
+            this.createMessage(content, time);
+            this.sendBox.value = "";
+            this.toggleMicSendButton();
+            await this.sendToGemini(content);
+        }
+    }
+   ```
+
+9. Gemini からのメッセージをみると、所々おかしな記号が含まれていることが確認できると思います。
    Gemini からの返信は**ほぼ**`markdown`形式なので、これを`HTML`形式で解釈(変換)してやる必要があります。
    実装にあたってはこのような機能を提供してくれる[`Marked.js`](https://github.com/markedjs/marked)というパッケージを使います。
 
-   1. まず、HTML 上でこのパッケージを使えるようにしましょう。`index.html`の`<head>`内に以下を追加してください。
-      ```html
-      <!-- markdownに対応 -->
-      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-      ```
-   2. 使い方は非常に簡単で、`marked.parse()`関数に`markdown`形式のテキストを引数として渡すだけです。
-      ```javascript
-      const mdContent = "##markdownで記述されたテキスト";
-      const htmlContent = marked.parse(mdContent);
-      ```
-   3. では実装していきましょう。`createMessage`関数を編集して`Gemini`から受け取ったメッセージを`HTML`に
-      変換してから HTML 要素に追加するように編集しましょう。
-   4. 以下が実装例になります。HTML 要素を追加するので`innerHTML`を使っています。
+10. まず、HTML 上でこのパッケージを使えるようにしましょう。`index.html`の`<head>`内に以下を追加してください。
+    ```html
+    <!-- markdownに対応 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    ```
+11. 使い方は非常に簡単で、`marked.parse()`関数に`markdown`形式のテキストを引数として渡すだけです。
+    ```javascript
+    const mdContent = "##markdownで記述されたテキスト";
+    const htmlContent = marked.parse(mdContent);
+    ```
+12. では実装していきましょう。`createMessage`関数を編集して`Gemini`から受け取ったメッセージを`HTML`に
+    変換してから HTML 要素に追加するように編集しましょう。
+13. 以下が実装例になります。HTML 要素を追加するので`innerHTML`を使っています。
 
-   ```javascript
-    createMessage(content, time, isFromMe = true) {
-        const templateName = isFromMe ? "me" : "friend";
-        const messageTemplate = document.querySelector(
-            `#message_template_from_${templateName}`
-        );
-        const message = messageTemplate.content
-            .cloneNode(true)
-            .querySelector(".message");
-        const sendTimeTag = message.querySelector(".message__time");
-        const contentTag = message.querySelector(".message__content");
+```javascript
+ createMessage(content, time, isFromMe = true) {
+     const templateName = isFromMe ? "me" : "friend";
+     const messageTemplate = document.querySelector(
+         `#message_template_from_${templateName}`
+     );
+     const message = messageTemplate.content
+         .cloneNode(true)
+         .querySelector(".message");
+     const sendTimeTag = message.querySelector(".message__time");
+     const contentTag = message.querySelector(".message__content");
 
-        sendTimeTag.textContent = time;
-        let contentHTML = content;
-        if (!isFromMe) {
-          // HTML要素全体をまとめてる親タグを作成し外余白を与えている。
-            contentHTML = `<div style="margin:5px 5px;">${marked.parse(
-                content
-            )}</div>`;
-        }
-        // innerHTMLを用いる
-        contentTag.innerHTML = contentHTML;
-        this.messageContainer.appendChild(message);
-        this.scrollToBottom(message);
-    }
-   ```
+     sendTimeTag.textContent = time;
+     let contentHTML = content;
+     if (!isFromMe) {
+       // HTML要素全体をまとめてる親タグを作成し外余白を与えている。
+         contentHTML = `<div style="margin:5px 5px;">${marked.parse(
+             content
+         )}</div>`;
+     }
+     // innerHTMLを用いる
+     contentTag.innerHTML = contentHTML;
+     this.messageContainer.appendChild(message);
+     this.scrollToBottom(message);
+ }
+```
 
 ## 3 　追加実装(時間が余ったら)
 
