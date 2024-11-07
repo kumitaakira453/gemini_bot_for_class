@@ -1,4 +1,4 @@
-# GeminiBot を作成しよう
+# GeminiBot を作ろう!
 
 ---
 
