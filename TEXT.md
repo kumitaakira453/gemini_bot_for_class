@@ -416,7 +416,7 @@ document.addEventListener("DOMContentLoaded", () => {
    1. メッセージが自分からのものなのか、Gemini からのものなのかは`isFromMe`からわかる。
    2. 送信元に応じて使うテンプレートを変更する必要がある。
 
-5. コード例は以下です。適宜参照してください。
+5. コード例は以下です。適宜参考にしてください。
 
    ```javascript
    createMessage(content, time, isFromMe = true) {
